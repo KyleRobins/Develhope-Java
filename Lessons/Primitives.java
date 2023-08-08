@@ -41,18 +41,5 @@ public class Primitives {
         //Byte Example
         byte myByte = 50;
         System.out.println(myByte);
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
