@@ -27,6 +27,9 @@ This section provides an introduction to Java programming language, its history,
 
 Here, you will learn how to set up your development environment for Java and write your first "Hello, World!" program.
 [Click here to read the GettingStarted.md](./Lessons/gettingstarted.md)
+## Input and Output
+
+Explore different ways of performing input and output operations in Java, including reading from and writing to files and the console.
 
 ## Variables and Data Types
 
@@ -52,9 +55,6 @@ This section covers the fundamentals of object-oriented programming (OOP) in Jav
 
 Learn about exception handling in Java, including how to handle exceptions, create custom exceptions, and use try-catch-finally blocks.
 
-## Input and Output
-
-Explore different ways of performing input and output operations in Java, including reading from and writing to files and the console.
 
 ## Collections
 
