@@ -21,10 +21,12 @@ These are detailed notes for learning Java. The following sections cover various
 ## Introduction
 
 This section provides an introduction to Java programming language, its history, and its main features.
+[Click here to view the Introduction.md file](./Lessons/introduction.md)
 
 ## Getting Started
 
 Here, you will learn how to set up your development environment for Java and write your first "Hello, World!" program.
+[Click here to read the GettingStarted.md](./Lessons/gettingstarted.md)
 
 ## Variables and Data Types
 

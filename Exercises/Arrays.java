@@ -21,4 +21,8 @@ public class Arrays {
 
 
     }
+
+    public static char[] toString(Integer[] cardinalMonthArray) {
+        return null;
+    }
 }
