@@ -1,62 +1,70 @@
 package com.example.springboot.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import java.util.Arrays;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.List;
-
-class Meal {
-    private String name;
-    private double price;
-    private String description;
-
-    public Meal(String name, double price, String description) {
-        this.name = name;
-        this.price = price;
-        this.description = description;
-    }
-
-    // getters and setters
-
-    @Override
-    public String toString() {
-        return "Meal{" +
-                "name='" + name + '\'' +
-                ", price=" + price +
-                ", description='" + description + '\'' +
-                '}';
-    }
-
-}
+import java.util.stream.Collectors;
 
 @RestController
 public class MealController {
 
+    private List<Meal> meals = new ArrayList<>();
+
+    // Exercise 1: Create a GetMapping that returns a list of meals
     @GetMapping("/meals")
-    public List<Meal> getMeals() {
-        return Arrays.asList(new Meal("Breakfast", 5.99, "Morning meal"),
-                new Meal("Lunch", 10.99, "Afternoon meal"),
-                new Meal("Dinner", 15.99, "Evening meal"));
+    public List<Meal> getAllMeals() {
+        return meals;
     }
 
+    // Exercise 2: Create a GetMapping that returns a meal by name
     @GetMapping("/meal/{name}")
     public Meal getMealByName(@PathVariable String name) {
-        // Retrieve the meal by name from the database or any data source
-        return new Meal(name, 10.99, "Description for " + name);
+        return meals.stream()
+                .filter(meal -> meal.getName().equals(name))
+                .findFirst()
+                .orElse(null);
     }
 
+    // Exercise 3: Create a GetMapping that returns a meal by any word of description
     @GetMapping("/meal/description-match/{phrase}")
     public Meal getMealByDescription(@PathVariable String phrase) {
-        // Retrieve the meal by description from the database or any data source
-        return new Meal("Meal with description: " + phrase, 12.99, phrase);
+        return meals.stream()
+                .filter(meal -> meal.getDescription().contains(phrase))
+                .findFirst()
+                .orElse(null);
     }
 
+    // Exercise 4: Create a GetMapping that returns a meal by price range
     @GetMapping("/meal/price")
     public List<Meal> getMealsByPriceRange(@RequestParam double min, @RequestParam double max) {
-        // Retrieve meals within the specified price range from the database or any data source
-        return Arrays.asList(new Meal("Breakfast", 5.99, "Morning meal"),
-                new Meal("Lunch", 10.99, "Afternoon meal"));
+        return meals.stream()
+                .filter(meal -> meal.getPrice() >= min && meal.getPrice() <= max)
+                .collect(Collectors.toList());
+    }
+
+    // Model class for Meal
+    static class Meal {
+        private String name;
+        private String description;
+        private double price;
+
+        public Meal(String name, String description, double price) {
+            this.name = name;
+            this.description = description;
+            this.price = price;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getDescription() {
+            return description;
+        }
+
+        public double getPrice() {
+            return price;
+        }
     }
 }
